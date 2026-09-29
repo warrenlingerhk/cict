@@ -45,7 +45,9 @@
         .expand-content.expanded { max-height: 500px; }
         .expand-btn svg { transition: transform 0.3s ease; }
         .expand-btn.expanded svg { transform: rotate(180deg); }
+        .client-logo { width: 40px; height: 40px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.1); padding: 4px; }
         
+        /* Offer color themes */
         .tone-1 { background: linear-gradient(135deg, #F2B33D 0%, #E07A2F 100%); color: #2E4156; }
         .tone-2 { background: linear-gradient(135deg, #E07A2F 0%, #C6472E 100%); color: white; }
         .tone-3 { background: linear-gradient(135deg, #2E4156 0%, #1a2a3a 100%); color: white; }
@@ -222,9 +224,10 @@
     </footer>
 
     <script>
-        // === PASTE YOUR URL HERE ===
-        const CMS_OFFERS_URL = 'https://script.google.com/macros/s/AKfycbxBBfSNhgPGbXKH2CGgUtQXCtYoeF8nfJWIsfsru7yccuUVrDMh4FuVI6rBWiwFNJX-/exec';
+        // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
+        const CMS_OFFERS_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
         
+        // Fallback offers in case sheet doesn't load
         const fallbackOffers = [
             {
                 name: "AI Deep Dive VIP",
@@ -295,7 +298,7 @@
             
             container.innerHTML = offersData.map((offer, index) => {
                 const toneClass = `tone-${(index % 5) + 1}`;
-                const isDark = index % 3 === 2;
+                const isDark = index % 3 === 2; // tone-3 and tone-4 are dark
                 
                 const bulletsHtml = offer.bullets.map(bullet => `
                     <li class="text-sm mb-2 flex items-start gap-2">
@@ -353,6 +356,7 @@
             const content = btn.nextElementSibling;
             const isExpanded = content.classList.contains('expanded');
             
+            // Close all expandables in this offer
             btn.closest('.offer-card').querySelectorAll('.expand-content').forEach(el => {
                 el.classList.remove('expanded');
             });
@@ -360,6 +364,7 @@
                 el.classList.remove('expanded');
             });
             
+            // Toggle current
             if (!isExpanded) {
                 content.classList.add('expanded');
                 btn.classList.add('expanded');
@@ -370,6 +375,7 @@
             window.open('https://calendar.app.google/kteRZx3JQ7BSjf5w5', '_blank');
         }
 
+        // Initialize
         document.addEventListener('DOMContentLoaded', loadOffers);
     </script>
 </body>
