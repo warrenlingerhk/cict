@@ -1,0 +1,25 @@
+
+
+name = "cict-website"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# If using KV for static files
+# [[kv_namespaces]]
+# binding = "STATIC_FILES"
+# id = "your-kv-namespace-id"
+
+# If using D1 for database
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "cict-db"
+# database_id = "your-database-id"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+
+# Routes (if needed)
+# [[routes]]
+# pattern = "cict.yourdomain.com/*"
+# zone_name = "yourdomain.com"
