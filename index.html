@@ -39,18 +39,18 @@
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #1d3557; }
         
-        /* Offer cards - pitchcamp shape, CICT colors */
-        .offer-card { border-radius: 16px; box-shadow: 0 6px 0 rgba(0,0,0,0.35); transition: transform .15s ease; }
+        .offer-card { transition: all 0.3s ease; }
         .offer-card:hover { transform: translateY(-2px); }
-        .tone-1 { background: linear-gradient(135deg, #D4AF37 0%, #F3D062 100%); color: #0A192F; }
-        .tone-2 { background: linear-gradient(135deg, #112240 0%, #1d3557 100%); color: #F8F9FA; border: 1px solid rgba(212,175,55,0.35); }
-        .tone-3 { background: linear-gradient(135deg, #8892B0 0%, #6B7699 100%); color: #0A192F; }
-        
         .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .expand-content.expanded { max-height: 600px; }
+        .expand-content.expanded { max-height: 500px; }
         .expand-btn svg { transition: transform 0.3s ease; }
         .expand-btn.expanded svg { transform: rotate(180deg); }
-        .quote { border-left: 3px solid; padding-left: 12px; font-style: italic; font-size: 0.9rem; line-height: 1.5; opacity: 0.95; }
+        
+        .tone-1 { background: linear-gradient(135deg, #F2B33D 0%, #E07A2F 100%); color: #2E4156; }
+        .tone-2 { background: linear-gradient(135deg, #E07A2F 0%, #C6472E 100%); color: white; }
+        .tone-3 { background: linear-gradient(135deg, #2E4156 0%, #1a2a3a 100%); color: white; }
+        .tone-4 { background: linear-gradient(135deg, #7E93A6 0%, #5a6a7a 100%); color: white; }
+        .tone-5 { background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%); color: #0A192F; }
     </style>
 </head>
 <body class="bg-canvasDark text-textMain font-sans antialiased selection:bg-goldAccent selection:text-canvasDark">
@@ -182,17 +182,19 @@
 
             </div>
 
-            <!-- RIGHT COLUMN - OFFERS (loaded from CICT CMS sheet) -->
+            <!-- RIGHT COLUMN - OFFERS -->
             <div class="lg:col-span-5">
                 <div class="sticky top-24">
-                    <div class="space-y-5" id="offers-container">
+                    <h2 class="font-sans text-2xl font-bold text-textMain mb-6 text-center">Choose Your Path</h2>
+                    
+                    <div class="space-y-4" id="offers-container">
                         <div class="text-center text-textMuted py-8">
                             <div class="animate-pulse">Loading offers...</div>
                         </div>
                     </div>
 
                     <div class="mt-8 p-6 bg-surfaceDark rounded-sm border border-white/5">
-                        <p class="text-sm text-textMuted text-center mb-4">Not sure which offer is right for you?</p>
+                        <p class="text-sm text-textMuted text-center mb-4">Not sure which path is right for you?</p>
                         <a href="https://calendar.app.google/kteRZx3JQ7BSjf5w5" target="_blank" rel="noopener noreferrer" 
                            class="block w-full text-center px-6 py-3 border border-goldAccent/40 hover:border-goldAccent text-goldAccent rounded-sm transition-all text-xs uppercase tracking-wider font-bold">
                             Book a Free Strategy Call
@@ -220,9 +222,9 @@
     </footer>
 
     <script>
+        // === PASTE YOUR URL HERE ===
         const CMS_OFFERS_URL = 'https://script.google.com/macros/s/AKfycbxBBfSNhgPGbXKH2CGgUtQXCtYoeF8nfJWIsfsru7yccuUVrDMh4FuVI6rBWiwFNJX-/exec';
         
-        // Fallback offers (matches your CICT CMS sheet) if the sheet can't be reached
         const fallbackOffers = [
             {
                 name: "AI Deep Dive VIP",
@@ -233,24 +235,24 @@
                 ],
                 expandables: [
                     "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes"
+                    "Increased team productivity by 300%",
+                    "Saved 20 hours per week on administrative tasks"
                 ]
             },
             {
                 name: "8-Session Intensive",
                 bullets: [
                     "1/2 year coaching",
-                    "clarify most important",
-                    "create your focused strategy",
-                    "develop your accountability schedule",
-                    "get it done",
-                    "celebrate your success"
+                    "Clarify most important",
+                    "Create your focused strategy",
+                    "Develop your accountability schedule",
+                    "Get it done",
+                    "Celebrate your success"
                 ],
                 expandables: [
                     "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes"
+                    "Launched 3 new products in 6 months",
+                    "Doubled revenue while working fewer hours"
                 ]
             },
             {
@@ -258,22 +260,15 @@
                 bullets: [
                     "1 year intensive",
                     "AI deep dive",
-                    "pre-admission to pitch camp and sales camp",
+                    "Pre-admission to pitch camp and sales camp",
                     "VIP registration for AI retreat"
                 ],
                 expandables: [
                     "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes"
+                    "Achieved industry recognition as thought leader",
+                    "Built a team of 15 high-performers"
                 ]
             }
-        ];
-
-        // Card color themes - gradients of the CICT palette
-        const tones = [
-            { cls: 'tone-1', dot: '#112240', quote: '#112240', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' },
-            { cls: 'tone-2', dot: '#D4AF37', quote: '#D4AF37', btn: 'bg-[#D4AF37] text-[#0A192F] hover:bg-[#F3D062]' },
-            { cls: 'tone-3', dot: '#112240', quote: '#112240', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' }
         ];
 
         let offersData = [];
@@ -299,40 +294,56 @@
             }
             
             container.innerHTML = offersData.map((offer, index) => {
-                const t = tones[index % tones.length];
-                const name = (offer.name || '').trim();
+                const toneClass = `tone-${(index % 5) + 1}`;
+                const isDark = index % 3 === 2;
                 
-                const bulletsHtml = (offer.bullets || []).map(bullet => `
-                    <li class="flex items-start gap-2 text-sm font-semibold">
-                        <span class="mt-0.5" style="color:${t.dot}">&bull;</span>
+                const bulletsHtml = offer.bullets.map(bullet => `
+                    <li class="text-sm mb-2 flex items-start gap-2">
+                        <span class="${isDark ? 'text-goldAccent' : 'text-white/90'} mt-1">✓</span>
                         <span>${bullet}</span>
                     </li>
                 `).join('');
                 
-                const expandHtml = (offer.expandables && offer.expandables.length > 0) ? `
-                    <button class="expand-btn mt-3 p-1 -ml-1" onclick="toggleExpandable(this)" aria-label="Show client results">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                    </button>
-                    <div class="expand-content">
-                        <div class="pt-3 space-y-3">
-                            ${offer.expandables.map(q => `<div class="quote" style="border-color:${t.quote}">${q}</div>`).join('')}
-                        </div>
+                const expandablesHtml = offer.expandables && offer.expandables.length > 0 ? `
+                    <div class="mt-4 pt-4 border-t border-white/20">
+                        <p class="text-xs uppercase tracking-wider opacity-80 mb-3 font-semibold">Client Outcomes:</p>
+                        ${offer.expandables.map((exp, idx) => `
+                            <div class="mb-3 last:mb-0">
+                                <button class="w-full flex items-center justify-between gap-2 text-left text-sm expand-btn" onclick="toggleExpandable(this)">
+                                    <span>Outcome ${idx + 1}</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="6 9 12 15 18 9"></polyline>
+                                    </svg>
+                                </button>
+                                <div class="expand-content mt-2">
+                                    <div class="bg-white/10 rounded-lg p-3 text-sm">
+                                        ${exp}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
                     </div>
                 ` : '';
                 
                 return `
-                    <div class="offer-card p-6 ${t.cls}">
-                        <h3 class="font-sans text-xl font-bold mb-4">${name}</h3>
-                        <button onclick="handleOfferClick('${name.replace(/'/g, "\\'")}')" 
-                                class="w-full py-3 rounded-full font-bold text-sm tracking-wide transition-colors ${t.btn}">
-                            Talk to DrWarren
-                        </button>
-                        <ul class="mt-4 space-y-2">
-                            ${bulletsHtml}
-                        </ul>
-                        ${expandHtml}
+                    <div class="offer-card rounded-sm border border-white/10 overflow-hidden ${toneClass}">
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl mb-4">${offer.name}</h3>
+                            
+                            <div class="mb-4">
+                                <p class="text-xs uppercase tracking-wider opacity-80 mb-3 font-semibold">What's Included:</p>
+                                <ul class="space-y-1">
+                                    ${bulletsHtml}
+                                </ul>
+                            </div>
+                            
+                            ${expandablesHtml}
+                            
+                            <button onclick="handleOfferClick('${offer.name}')" 
+                                    class="w-full mt-6 py-3 rounded-lg font-bold text-sm uppercase tracking-wider transition-all ${isDark ? 'bg-white text-[#2E4156] hover:bg-gray-100' : 'bg-[#2E4156] text-white hover:bg-[#1E2F42]'}">
+                                Get Started
+                            </button>
+                        </div>
                     </div>
                 `;
             }).join('');
@@ -340,8 +351,19 @@
 
         function toggleExpandable(btn) {
             const content = btn.nextElementSibling;
-            btn.classList.toggle('expanded');
-            content.classList.toggle('expanded');
+            const isExpanded = content.classList.contains('expanded');
+            
+            btn.closest('.offer-card').querySelectorAll('.expand-content').forEach(el => {
+                el.classList.remove('expanded');
+            });
+            btn.closest('.offer-card').querySelectorAll('.expand-btn').forEach(el => {
+                el.classList.remove('expanded');
+            });
+            
+            if (!isExpanded) {
+                content.classList.add('expanded');
+                btn.classList.add('expanded');
+            }
         }
 
         function handleOfferClick(name) {
