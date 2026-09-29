@@ -8,10 +8,12 @@
     <title>DrWarren | Client Acquisition Engines</title>
     <link rel="icon" type="image/png" href="favicon.png">
     
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
  
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -39,24 +41,19 @@
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #1d3557; }
         
+        /* Expandable offers styles */
         .offer-card { transition: all 0.3s ease; }
         .offer-card:hover { transform: translateY(-2px); }
-        .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .expand-content.expanded { max-height: 500px; }
+        .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .expand-content.expanded { max-height: 1000px; }
         .expand-btn svg { transition: transform 0.3s ease; }
         .expand-btn.expanded svg { transform: rotate(180deg); }
         .client-logo { width: 40px; height: 40px; object-fit: contain; border-radius: 6px; background: rgba(255,255,255,0.1); padding: 4px; }
-        
-        /* Offer color themes */
-        .tone-1 { background: linear-gradient(135deg, #F2B33D 0%, #E07A2F 100%); color: #2E4156; }
-        .tone-2 { background: linear-gradient(135deg, #E07A2F 0%, #C6472E 100%); color: white; }
-        .tone-3 { background: linear-gradient(135deg, #2E4156 0%, #1a2a3a 100%); color: white; }
-        .tone-4 { background: linear-gradient(135deg, #7E93A6 0%, #5a6a7a 100%); color: white; }
-        .tone-5 { background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%); color: #0A192F; }
     </style>
 </head>
 <body class="bg-canvasDark text-textMain font-sans antialiased selection:bg-goldAccent selection:text-canvasDark">
 
+    <!-- Header Navigation -->
     <header class="border-b border-surfaceDark/60 py-6 px-6 lg:px-12 sticky top-0 bg-canvasDark/95 backdrop-blur z-50">
         <div class="max-w-[1400px] mx-auto flex justify-between items-center">
             <a href="#" class="text-lg font-bold tracking-tight text-textMain hover:opacity-90 transition-opacity flex items-center gap-2">
@@ -71,13 +68,14 @@
         </div>
     </header>
 
+    <!-- Main Content Container - Two Column Layout -->
     <main class="max-w-[1400px] mx-auto px-6 lg:px-12 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
             
-            <!-- LEFT COLUMN -->
+            <!-- LEFT COLUMN - Main Content (8 cols) -->
             <div class="lg:col-span-7 space-y-16">
 
-                <!-- HERO -->
+                <!-- [SECTION 1: HERO] -->
                 <section class="flex flex-col items-start space-y-8">
                     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-goldAccent/30 bg-goldAccent/5">
                         <span class="text-[10px] text-goldAccent font-semibold tracking-widest uppercase">Certified Partnership</span>
@@ -99,7 +97,7 @@
                     </div>
                 </section>
 
-                <!-- METHODOLOGY -->
+                <!-- [SECTION 2: THE 3 CORE STEPS GRID] -->
                 <section class="border-t border-surfaceDark/50 pt-16">
                     <div class="text-center space-y-4 mb-12">
                         <span class="text-xs uppercase tracking-widest text-goldAccent font-semibold font-sans">Our Methodology</span>
@@ -108,27 +106,42 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
-                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300">
-                            <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 01</div>
-                            <h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">Get Clients Now™ Framework</h3>
-                            <p class="text-sm text-textMuted leading-relaxed">Stop guessing. Learn the proven relationship-building methods that fill rosters and keeps repeating.</p>
+                        <!-- Step 1 -->
+                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 flex flex-col justify-between hover:border-goldAccent/20 transition-all duration-300">
+                            <div class="space-y-4">
+                                <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider">Step 01</div>
+                                <h3 class="font-sans text-lg font-bold text-textMain leading-snug">Get Clients Now™ Framework</h3>
+                                <p class="text-sm text-textMuted leading-relaxed">
+                                    Stop guessing. Learn the proven relationship-building methods that fill rosters and keeps repeating.
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300">
-                            <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 02</div>
-                            <h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">Business Infrastructure & Flow Psychology</h3>
-                            <p class="text-sm text-textMuted leading-relaxed">Design your business infrastructure. Experience Flow when getting clients as when coaching them.</p>
+                        <!-- Step 2 -->
+                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 flex flex-col justify-between hover:border-goldAccent/20 transition-all duration-300">
+                            <div class="space-y-4">
+                                <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider">Step 02</div>
+                                <h3 class="font-sans text-lg font-bold text-textMain leading-snug">Business Infrastructure & Flow Psychology</h3>
+                                <p class="text-sm text-textMuted leading-relaxed">
+                                    Design your business infrastructure. Experience Flow when getting clients as when coaching them.
+                                </p>
+                            </div>
                         </div>
 
-                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300">
-                            <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 03</div>
-                            <h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">Breaking the Limiting Identity</h3>
-                            <p class="text-sm text-textMuted leading-relaxed">Pinpoint and smash the invisible, deep-seated limiting beliefs that keep brilliant coaches playing small.</p>
+                        <!-- Step 3 -->
+                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 flex flex-col justify-between hover:border-goldAccent/20 transition-all duration-300">
+                            <div class="space-y-4">
+                                <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider">Step 03</div>
+                                <h3 class="font-sans text-lg font-bold text-textMain leading-snug">Breaking the Limiting Identity</h3>
+                                <p class="text-sm text-textMuted leading-relaxed">
+                                    Pinpoint and smash the invisible, deep-seated limiting beliefs that keep brilliant coaches playing small.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </section>
 
-                <!-- WHY DRWARREN -->
+                <!-- [SECTION 3: WHY DRWARREN] -->
                 <section id="about" class="border-t border-surfaceDark/50 pt-16">
                     <div class="space-y-6">
                         <div class="space-y-3">
@@ -184,15 +197,14 @@
 
             </div>
 
-            <!-- RIGHT COLUMN - OFFERS -->
+            <!-- RIGHT COLUMN - Coaching Offers (5 cols) -->
             <div class="lg:col-span-5">
                 <div class="sticky top-24">
                     <h2 class="font-sans text-2xl font-bold text-textMain mb-6 text-center">Choose Your Path</h2>
                     
                     <div class="space-y-4" id="offers-container">
-                        <div class="text-center text-textMuted py-8">
-                            <div class="animate-pulse">Loading offers...</div>
-                        </div>
+                        <!-- Offers will be loaded here dynamically -->
+                        <div class="text-center text-textMuted py-8">Loading offers...</div>
                     </div>
 
                     <div class="mt-8 p-6 bg-surfaceDark rounded-sm border border-white/5">
@@ -208,6 +220,7 @@
         </div>
     </main>
 
+    <!-- Footer -->
     <footer class="bg-surfaceDark border-t border-white/5 py-12 px-6 lg:px-12 font-sans mt-16">
         <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
             <span class="text-xs text-textMuted">
@@ -224,127 +237,168 @@
     </footer>
 
     <script>
-        // REPLACE THIS WITH YOUR GOOGLE APPS SCRIPT WEB APP URL
-        const CMS_OFFERS_URL = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
-        
-        // Fallback offers in case sheet doesn't load
-        const fallbackOffers = [
+        // Offers data - Replace with your actual offers and client logos
+        const offersData = [
             {
-                name: "AI Deep Dive VIP",
-                bullets: [
-                    "45-minute KYC meeting",
-                    "8-hour intensive to set your two year AI strategy",
-                    "60-minute follow up after 30 days"
+                id: 1,
+                name: "Get Clients Now™ Bootcamp",
+                tone: "c1", // c1=yellow, c2=orange, c3=red, c4=navy, c5=slate
+                active: true,
+                outcomes: [
+                    "Master relationship-driven outreach",
+                    "Build your ideal client pipeline",
+                    "Book 5-10 discovery calls per week",
+                    "Create sustainable client acquisition systems",
+                    "Overcome rejection and build confidence"
                 ],
-                expandables: [
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Increased team productivity by 300%",
-                    "Saved 20 hours per week on administrative tasks"
-                ]
+                packages: [
+                    {
+                        name: "Self-Paced Program",
+                        logo: "clients/client1.png", // Replace with actual client logo
+                        items: [
+                            { item: "8-Week Video Training", price: "Value $2,000" },
+                            { item: "Worksheets & Templates", price: "Value $500" },
+                            { item: "Private Community Access", price: "Value $300" }
+                        ],
+                        total: "Total Value: $2,800"
+                    },
+                    {
+                        name: "Group Coaching",
+                        logo: "clients/client2.png",
+                        items: [
+                            { item: "Everything in Self-Paced", price: "Value $2,800" },
+                            { item: "Weekly Group Calls", price: "Value $1,500" },
+                            { item: "Peer Accountability", price: "Priceless" }
+                        ],
+                        total: "Total Value: $4,300"
+                    }
+                ],
+                value: "US$2,800 - US$4,300"
             },
             {
-                name: "8-Session Intensive",
-                bullets: [
-                    "1/2 year coaching",
-                    "Clarify most important",
-                    "Create your focused strategy",
-                    "Develop your accountability schedule",
-                    "Get it done",
-                    "Celebrate your success"
+                id: 2,
+                name: "1-on-1 Executive Coaching",
+                tone: "c3",
+                active: true,
+                outcomes: [
+                    "Personalized client acquisition strategy",
+                    "Weekly accountability sessions",
+                    "Direct access to DrWarren",
+                    "Custom business infrastructure design",
+                    "Identity breakthrough work"
                 ],
-                expandables: [
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Launched 3 new products in 6 months",
-                    "Doubled revenue while working fewer hours"
-                ]
+                packages: [
+                    {
+                        name: "3-Month Intensive",
+                        logo: "clients/client3.png",
+                        items: [
+                            { item: "12 Weekly 1-on-1 Sessions", price: "Value $6,000" },
+                            { item: "Email Support Between Calls", price: "Value $1,000" },
+                            { item: "Custom Action Plans", price: "Value $500" }
+                        ],
+                        total: "Total Value: $7,500"
+                    }
+                ],
+                value: "US$7,500"
             },
             {
-                name: "Mastery Bundle",
-                bullets: [
-                    "1 year intensive",
-                    "AI deep dive",
-                    "Pre-admission to pitch camp and sales camp",
-                    "VIP registration for AI retreat"
+                id: 3,
+                name: "Certification Program Partnership",
+                tone: "c2",
+                active: true,
+                outcomes: [
+                    "Bring Get Clients Now™ to your organization",
+                    "Train your coaches internally",
+                    "Licensed curriculum and materials",
+                    "Ongoing support and updates",
+                    "Certification for your team"
                 ],
-                expandables: [
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Achieved industry recognition as thought leader",
-                    "Built a team of 15 high-performers"
-                ]
+                packages: [
+                    {
+                        name: "Organizational License",
+                        logo: "clients/client4.png",
+                        items: [
+                            { item: "Full Curriculum License", price: "Value $15,000" },
+                            { item: "Train-the-Trainer Session", price: "Value $5,000" },
+                            { item: "12 Months Support", price: "Value $3,000" }
+                        ],
+                        total: "Total Value: $23,000"
+                    }
+                ],
+                value: "US$23,000"
             }
         ];
 
-        let offersData = [];
-
-        async function loadOffers() {
-            try {
-                const response = await fetch(CMS_OFFERS_URL);
-                if (!response.ok) throw new Error('Failed to load');
-                offersData = await response.json();
-            } catch (error) {
-                console.error('Using fallback offers:', error);
-                offersData = fallbackOffers;
-            }
-            renderOffers();
-        }
-
+        // Render offers
         function renderOffers() {
             const container = document.getElementById('offers-container');
             
-            if (!offersData || offersData.length === 0) {
-                container.innerHTML = '<div class="text-center text-textMuted py-8">No offers available</div>';
-                return;
-            }
-            
-            container.innerHTML = offersData.map((offer, index) => {
-                const toneClass = `tone-${(index % 5) + 1}`;
-                const isDark = index % 3 === 2; // tone-3 and tone-4 are dark
+            container.innerHTML = offersData.map(offer => {
+                const toneClasses = {
+                    c1: 'bg-[#F2B33D] text-[#2E4156]',
+                    c2: 'bg-[#E07A2F] text-white',
+                    c3: 'bg-[#C6472E] text-white',
+                    c4: 'bg-[#2E4156] text-white',
+                    c5: 'bg-[#7E93A6] text-white'
+                };
                 
-                const bulletsHtml = offer.bullets.map(bullet => `
-                    <li class="text-sm mb-2 flex items-start gap-2">
-                        <span class="${isDark ? 'text-goldAccent' : 'text-white/90'} mt-1">✓</span>
-                        <span>${bullet}</span>
-                    </li>
-                `).join('');
-                
-                const expandablesHtml = offer.expandables && offer.expandables.length > 0 ? `
-                    <div class="mt-4 pt-4 border-t border-white/20">
-                        <p class="text-xs uppercase tracking-wider opacity-80 mb-3 font-semibold">Client Outcomes:</p>
-                        ${offer.expandables.map((exp, idx) => `
-                            <div class="mb-3 last:mb-0">
-                                <button class="w-full flex items-center justify-between gap-2 text-left text-sm expand-btn" onclick="toggleExpandable(this)">
-                                    <span>Outcome ${idx + 1}</span>
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </button>
-                                <div class="expand-content mt-2">
-                                    <div class="bg-white/10 rounded-lg p-3 text-sm">
-                                        ${exp}
+                const pkgHtml = offer.packages.map((pkg, idx) => `
+                    <div class="mb-3 last:mb-0">
+                        <button class="w-full flex items-center justify-between gap-3 bg-white/10 hover:bg-white/20 px-4 py-3 rounded-lg transition-colors expand-pkg-btn" onclick="togglePackage(this)">
+                            <div class="flex items-center gap-3">
+                                ${pkg.logo ? `<img src="${pkg.logo}" alt="${pkg.name}" class="client-logo" onerror="this.style.display='none'">` : ''}
+                                <span class="font-bold text-sm">${pkg.name}</span>
+                            </div>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="expand-content bg-white text-[#2E4156] rounded-lg mt-2 overflow-hidden">
+                            <div class="p-4 space-y-2">
+                                ${pkg.items.map(item => `
+                                    <div class="flex justify-between text-sm border-b border-gray-200 pb-2 last:border-0">
+                                        <span>${item.item}</span>
+                                        <span class="font-semibold">${item.price}</span>
+                                    </div>
+                                `).join('')}
+                                <div class="pt-2 mt-2 border-t-2 border-[#E07A2F]">
+                                    <div class="flex justify-between font-bold text-base">
+                                        <span>Total Package Value</span>
+                                        <span>${pkg.total}</span>
                                     </div>
                                 </div>
                             </div>
-                        `).join('')}
+                        </div>
                     </div>
-                ` : '';
+                `).join('');
+                
+                const outcomesHtml = offer.outcomes.map(outcome => `<li class="text-sm mb-2 flex items-start gap-2"><span class="text-goldAccent mt-1">✓</span><span>${outcome}</span></li>`).join('');
                 
                 return `
-                    <div class="offer-card rounded-sm border border-white/10 overflow-hidden ${toneClass}">
+                    <div class="offer-card bg-surfaceDark rounded-sm border border-white/5 overflow-hidden ${toneClasses[offer.tone]}">
                         <div class="p-6">
                             <h3 class="font-bold text-xl mb-4">${offer.name}</h3>
                             
                             <div class="mb-4">
-                                <p class="text-xs uppercase tracking-wider opacity-80 mb-3 font-semibold">What's Included:</p>
+                                <p class="text-xs uppercase tracking-wider opacity-80 mb-3 font-semibold">What You'll Get:</p>
                                 <ul class="space-y-1">
-                                    ${bulletsHtml}
+                                    ${outcomesHtml}
                                 </ul>
                             </div>
                             
-                            ${expandablesHtml}
+                            <div class="mb-4">
+                                <p class="text-xs uppercase tracking-wider opacity-80 mb-3 font-semibold">Packages:</p>
+                                ${pkgHtml}
+                            </div>
                             
-                            <button onclick="handleOfferClick('${offer.name}')" 
-                                    class="w-full mt-6 py-3 rounded-lg font-bold text-sm uppercase tracking-wider transition-all ${isDark ? 'bg-white text-[#2E4156] hover:bg-gray-100' : 'bg-[#2E4156] text-white hover:bg-[#1E2F42]'}">
-                                Get Started
+                            <div class="bg-white/10 rounded-lg p-3 text-center mb-4">
+                                <span class="text-xs uppercase tracking-wider opacity-80 block">Investment Range</span>
+                                <span class="font-bold text-lg">${offer.value}</span>
+                            </div>
+                            
+                            <button onclick="handleOfferClick('${offer.name}', ${offer.active})" 
+                                    class="w-full py-3 rounded-lg font-bold text-sm uppercase tracking-wider transition-all ${offer.tone === 'c1' ? 'bg-[#2E4156] text-white hover:bg-[#1E2F42]' : 'bg-white text-[#2E4156] hover:bg-gray-100'}">
+                                ${offer.active ? 'Get Started' : 'Contact Us'}
                             </button>
                         </div>
                     </div>
@@ -352,31 +406,39 @@
             }).join('');
         }
 
-        function toggleExpandable(btn) {
+        function togglePackage(btn) {
             const content = btn.nextElementSibling;
             const isExpanded = content.classList.contains('expanded');
             
-            // Close all expandables in this offer
+            // Close all other packages in this offer
             btn.closest('.offer-card').querySelectorAll('.expand-content').forEach(el => {
                 el.classList.remove('expanded');
+                el.style.maxHeight = '0';
             });
-            btn.closest('.offer-card').querySelectorAll('.expand-btn').forEach(el => {
+            btn.closest('.offer-card').querySelectorAll('.expand-pkg-btn').forEach(el => {
                 el.classList.remove('expanded');
             });
             
             // Toggle current
             if (!isExpanded) {
                 content.classList.add('expanded');
+                content.style.maxHeight = content.scrollHeight + 'px';
                 btn.classList.add('expanded');
             }
         }
 
-        function handleOfferClick(name) {
-            window.open('https://calendar.app.google/kteRZx3JQ7BSjf5w5', '_blank');
+        function handleOfferClick(name, active) {
+            if (active) {
+                window.open('https://calendar.app.google/kteRZx3JQ7BSjf5w5', '_blank');
+            } else {
+                alert('Contact DrWarren to learn more about ' + name);
+            }
         }
 
         // Initialize
-        document.addEventListener('DOMContentLoaded', loadOffers);
+        document.addEventListener('DOMContentLoaded', () => {
+            renderOffers();
+        });
     </script>
 </body>
 </html>
