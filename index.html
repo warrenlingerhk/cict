@@ -39,7 +39,6 @@
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #1d3557; }
         
-        /* Offer cards - pitchcamp shape, CICT colors */
         .offer-card { border-radius: 16px; box-shadow: 0 6px 0 rgba(0,0,0,0.35); transition: transform .15s ease; }
         .offer-card:hover { transform: translateY(-2px); }
         .tone-1 { background: linear-gradient(135deg, #D4AF37 0%, #F3D062 100%); color: #0A192F; }
@@ -47,10 +46,16 @@
         .tone-3 { background: linear-gradient(135deg, #8892B0 0%, #6B7699 100%); color: #0A192F; }
         
         .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
-        .expand-content.expanded { max-height: 600px; }
+        .expand-content.expanded { max-height: 1500px; }
         .expand-btn svg { transition: transform 0.3s ease; }
         .expand-btn.expanded svg { transform: rotate(180deg); }
-        .quote { border-left: 3px solid; padding-left: 12px; font-style: italic; font-size: 0.9rem; line-height: 1.5; opacity: 0.95; }
+        
+        .client-btn svg { transition: transform 0.3s ease; }
+        .client-btn.open svg { transform: rotate(180deg); }
+        .client-img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; background: #F8F9FA; flex-shrink: 0; }
+        .client-quotes { display: none; }
+        .client-quotes.open { display: block; }
+        .quote { border-left: 3px solid; padding-left: 12px; font-style: italic; font-size: 0.9rem; line-height: 1.5; }
     </style>
 </head>
 <body class="bg-canvasDark text-textMain font-sans antialiased selection:bg-goldAccent selection:text-canvasDark">
@@ -222,7 +227,7 @@
     <script>
         const CMS_OFFERS_URL = 'https://script.google.com/macros/s/AKfycbxBBfSNhgPGbXKH2CGgUtQXCtYoeF8nfJWIsfsru7yccuUVrDMh4FuVI6rBWiwFNJX-/exec';
         
-        // Fallback offers (matches your CICT CMS sheet) if the sheet can't be reached
+        // Fallback (matches your sheet) if the sheet can't be reached
         const fallbackOffers = [
             {
                 name: "AI Deep Dive VIP",
@@ -231,10 +236,12 @@
                     "8-hour intensive to set your two year AI strategy",
                     "60-minute follow up after 30 days"
                 ],
-                expandables: [
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes"
+                clients: [
+                    { name: "Christine", image: "clients/christine.jpg", quotes: [
+                        "Christine went through the AI Deep Dive and she got these outcomes",
+                        "Christine went through the AI Deep Dive and she got these outcomes",
+                        "Christine went through the AI Deep Dive and she got these outcomes"
+                    ] }
                 ]
             },
             {
@@ -247,10 +254,12 @@
                     "get it done",
                     "celebrate your success"
                 ],
-                expandables: [
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes"
+                clients: [
+                    { name: "Christine", image: "clients/christine.jpg", quotes: [
+                        "Christine went through the AI Deep Dive and she got these outcomes",
+                        "Christine went through the AI Deep Dive and she got these outcomes",
+                        "Christine went through the AI Deep Dive and she got these outcomes"
+                    ] }
                 ]
             },
             {
@@ -261,19 +270,20 @@
                     "pre-admission to pitch camp and sales camp",
                     "VIP registration for AI retreat"
                 ],
-                expandables: [
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes",
-                    "Christine went through the AI Deep Dive and she got these outcomes"
+                clients: [
+                    { name: "Christine", image: "clients/christine.jpg", quotes: [
+                        "Christine went through the AI Deep Dive and she got these outcomes",
+                        "Christine went through the AI Deep Dive and she got these outcomes",
+                        "Christine went through the AI Deep Dive and she got these outcomes"
+                    ] }
                 ]
             }
         ];
 
-        // Card color themes - gradients of the CICT palette
         const tones = [
-            { cls: 'tone-1', dot: '#112240', quote: '#112240', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' },
-            { cls: 'tone-2', dot: '#D4AF37', quote: '#D4AF37', btn: 'bg-[#D4AF37] text-[#0A192F] hover:bg-[#F3D062]' },
-            { cls: 'tone-3', dot: '#112240', quote: '#112240', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' }
+            { cls: 'tone-1', dot: '#112240', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' },
+            { cls: 'tone-2', dot: '#D4AF37', btn: 'bg-[#D4AF37] text-[#0A192F] hover:bg-[#F3D062]' },
+            { cls: 'tone-3', dot: '#112240', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' }
         ];
 
         let offersData = [];
@@ -287,6 +297,13 @@
                 console.error('Using fallback offers:', error);
                 offersData = fallbackOffers;
             }
+            // Safety: if sheet still returns old "expandables" format, wrap as one client
+            offersData = offersData.map(o => {
+                if (!o.clients && o.expandables && o.expandables.length) {
+                    o.clients = [{ name: 'Client Results', image: '', quotes: o.expandables }];
+                }
+                return o;
+            });
             renderOffers();
         }
 
@@ -301,23 +318,48 @@
             container.innerHTML = offersData.map((offer, index) => {
                 const t = tones[index % tones.length];
                 const name = (offer.name || '').trim();
+                const bullets = offer.bullets || [];
+                const shown = bullets.slice(0, 2);
+                const hidden = bullets.slice(2);
+                const clients = offer.clients || [];
+                const needsExpand = hidden.length > 0 || clients.length > 0;
                 
-                const bulletsHtml = (offer.bullets || []).map(bullet => `
+                const bulletLi = b => `
                     <li class="flex items-start gap-2 text-sm font-semibold">
                         <span class="mt-0.5" style="color:${t.dot}">&bull;</span>
-                        <span>${bullet}</span>
-                    </li>
-                `).join('');
+                        <span>${b}</span>
+                    </li>`;
                 
-                const expandHtml = (offer.expandables && offer.expandables.length > 0) ? `
-                    <button class="expand-btn mt-3 p-1 -ml-1" onclick="toggleExpandable(this)" aria-label="Show client results">
+                const clientsHtml = clients.length ? `
+                    <p class="text-xs uppercase tracking-wider font-bold opacity-80 mb-2 mt-4">Happy Customers</p>
+                    <div class="space-y-2">
+                        ${clients.map(c => `
+                            <div class="rounded-lg overflow-hidden" style="background:rgba(255,255,255,0.14)">
+                                <button class="client-btn w-full flex items-center gap-3 px-3 py-2" onclick="toggleClient(this)">
+                                    ${c.image ? `<img src="${c.image}" alt="${c.name}" class="client-img" onerror="this.style.display='none'">` : `<span class="client-img flex items-center justify-center" style="color:#D4AF37">&#10022;</span>`}
+                                    <span class="flex-1 text-left font-bold text-sm">${c.name}</span>
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                                </button>
+                                <div class="client-quotes">
+                                    <div class="px-3 py-3 space-y-3" style="background:rgba(248,249,250,0.95); color:#112240">
+                                        ${(c.quotes || []).map(q => `<div class="quote" style="border-color:#D4AF37">${q}</div>`).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                ` : '';
+                
+                const expandHtml = needsExpand ? `
+                    <button class="expand-btn mt-3 p-1 -ml-1" onclick="toggleExpandable(this)" aria-label="Show more">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                             <polyline points="6 9 12 15 18 9"></polyline>
                         </svg>
                     </button>
                     <div class="expand-content">
-                        <div class="pt-3 space-y-3">
-                            ${offer.expandables.map(q => `<div class="quote" style="border-color:${t.quote}">${q}</div>`).join('')}
+                        <div class="pt-3">
+                            ${hidden.length ? `<ul class="space-y-2">${hidden.map(bulletLi).join('')}</ul>` : ''}
+                            ${clientsHtml}
                         </div>
                     </div>
                 ` : '';
@@ -330,7 +372,7 @@
                             Talk to DrWarren
                         </button>
                         <ul class="mt-4 space-y-2">
-                            ${bulletsHtml}
+                            ${shown.map(bulletLi).join('')}
                         </ul>
                         ${expandHtml}
                     </div>
@@ -339,9 +381,13 @@
         }
 
         function toggleExpandable(btn) {
-            const content = btn.nextElementSibling;
             btn.classList.toggle('expanded');
-            content.classList.toggle('expanded');
+            btn.nextElementSibling.classList.toggle('expanded');
+        }
+
+        function toggleClient(btn) {
+            btn.classList.toggle('open');
+            btn.parentElement.querySelector('.client-quotes').classList.toggle('open');
         }
 
         function handleOfferClick(name) {
