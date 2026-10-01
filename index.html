@@ -39,11 +39,19 @@
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #1d3557; }
         
-        .offer-card { border-radius: 16px; box-shadow: 0 6px 0 rgba(0,0,0,0.35); transition: transform .15s ease; }
+        .offer-card { 
+            border-radius: 16px; 
+            box-shadow: 0 6px 0 rgba(0,0,0,0.35); 
+            transition: transform .15s ease; 
+            color: #F8F9FA;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+        }
         .offer-card:hover { transform: translateY(-2px); }
-        .tone-1 { background: linear-gradient(135deg, #D4AF37 0%, #F3D062 100%); color: #0A192F; }
-        .tone-2 { background: linear-gradient(135deg, #112240 0%, #1d3557 100%); color: #F8F9FA; border: 1px solid rgba(212,175,55,0.35); }
-        .tone-3 { background: linear-gradient(135deg, #8892B0 0%, #6B7699 100%); color: #0A192F; }
+        
+        /* Continuous gradient flow: gold → navy → slate → gold (loops) */
+        .tone-1 { background: linear-gradient(135deg, #D4AF37 0%, #8B7420 45%, #112240 100%); }
+        .tone-2 { background: linear-gradient(135deg, #112240 0%, #2f4469 45%, #6B7699 100%); }
+        .tone-3 { background: linear-gradient(135deg, #6B7699 0%, #9c8a5a 45%, #D4AF37 100%); }
         
         .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
         .expand-content.expanded { max-height: 1500px; }
@@ -52,10 +60,10 @@
         
         .client-btn svg { transition: transform 0.3s ease; }
         .client-btn.open svg { transform: rotate(180deg); }
-        .client-img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; background: #F8F9FA; flex-shrink: 0; }
+        .client-img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; background: #F8F9FA; flex-shrink: 0; text-shadow: none; }
         .client-quotes { display: none; }
         .client-quotes.open { display: block; }
-        .quote { border-left: 3px solid; padding-left: 12px; font-style: italic; font-size: 0.9rem; line-height: 1.5; }
+        .quote { border-left: 3px solid; padding-left: 12px; font-style: italic; font-size: 0.9rem; line-height: 1.5; text-shadow: none; }
     </style>
 </head>
 <body class="bg-canvasDark text-textMain font-sans antialiased selection:bg-goldAccent selection:text-canvasDark">
@@ -210,16 +218,16 @@
     </main>
 
     <footer class="bg-surfaceDark border-t border-white/5 py-12 px-6 lg:px-12 font-sans mt-16">
-        <div class="max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <span class="text-xs text-textMuted">
-                &copy;2026 DrWarren exmersive.ai, dba Certified Innovation. All rights reserved.
-            </span>
-            <div class="flex gap-4 text-xs text-textMuted">
+        <div class="max-w-[1200px] mx-auto flex flex-col items-start gap-2 text-xs text-textMuted">
+            <span>&copy;2026 DrWarren exmersive.ai, dba Certified Innovation. All rights reserved.</span>
+            <div class="flex flex-wrap gap-x-1 gap-y-1">
                 <a href="privacy.html" class="hover:text-textMain transition-colors">Privacy Policy</a>
-                <span>|</span>
+                <span class="mx-1">|</span>
                 <a href="terms.html" class="hover:text-textMain transition-colors">Terms & Conditions</a>
-                <span>|</span>
+                <span class="mx-1">|</span>
                 <a href="data-protection.html" class="hover:text-textMain transition-colors">Data Protection</a>
+                <span class="mx-1">|</span>
+                <a href="earnings-disclaimer.html" class="hover:text-textMain transition-colors">Earnings Disclaimer</a>
             </div>
         </div>
     </footer>
@@ -227,7 +235,6 @@
     <script>
         const CMS_OFFERS_URL = 'https://script.google.com/macros/s/AKfycbxBBfSNhgPGbXKH2CGgUtQXCtYoeF8nfJWIsfsru7yccuUVrDMh4FuVI6rBWiwFNJX-/exec';
         
-        // Fallback (matches your sheet) if the sheet can't be reached
         const fallbackOffers = [
             {
                 name: "AI Deep Dive VIP",
@@ -280,10 +287,11 @@
             }
         ];
 
+        // Button styles chosen to contrast each flowing gradient
         const tones = [
-            { cls: 'tone-1', dot: '#112240', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' },
+            { cls: 'tone-1', dot: '#F3D062', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' },
             { cls: 'tone-2', dot: '#D4AF37', btn: 'bg-[#D4AF37] text-[#0A192F] hover:bg-[#F3D062]' },
-            { cls: 'tone-3', dot: '#112240', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' }
+            { cls: 'tone-3', dot: '#F3D062', btn: 'bg-[#112240] text-[#F3D062] hover:bg-[#0A192F]' }
         ];
 
         let offersData = [];
@@ -297,7 +305,6 @@
                 console.error('Using fallback offers:', error);
                 offersData = fallbackOffers;
             }
-            // Safety: if sheet still returns old "expandables" format, wrap as one client
             offersData = offersData.map(o => {
                 if (!o.clients && o.expandables && o.expandables.length) {
                     o.clients = [{ name: 'Client Results', image: '', quotes: o.expandables }];
