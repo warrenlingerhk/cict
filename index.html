@@ -7,95 +7,217 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DrWarren | Client Acquisition Engines</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+ 
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = { theme: { extend: {
-            colors: { canvasDark:'#0A192F', surfaceDark:'#112240', goldAccent:'#D4AF37', goldHover:'#F3D062', textMain:'#F8F9FA', textMuted:'#8892B0' },
-            fontFamily: { sans:['Inter','system-ui','sans-serif'], serif:['Playfair Display','Georgia','serif'] }
-        } } };
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        canvasDark: '#0A192F',
+                        surfaceDark: '#112240',
+                        goldAccent: '#D4AF37',
+                        goldHover: '#F3D062',
+                        textMain: '#F8F9FA',
+                        textMuted: '#8892B0',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
     </script>
     <style>
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #0A192F; }
         ::-webkit-scrollbar-thumb { background: #112240; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #1d3557; }
-        .offer-card { border-radius:16px; box-shadow:0 6px 0 rgba(0,0,0,0.35); transition:transform .15s ease; color:#F8F9FA; text-shadow:0 1px 2px rgba(0,0,0,0.25); }
+        
+        .offer-card { 
+            border-radius: 16px; 
+            box-shadow: 0 6px 0 rgba(0,0,0,0.35); 
+            transition: transform .15s ease; 
+            color: #F8F9FA;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.25);
+        }
         .offer-card:hover { transform: translateY(-2px); }
+        
         .tone-1 { background: linear-gradient(135deg, #D4AF37 0%, #8B7420 45%, #112240 100%); }
         .tone-2 { background: linear-gradient(135deg, #112240 0%, #2f4469 45%, #6B7699 100%); }
         .tone-3 { background: linear-gradient(135deg, #6B7699 0%, #9c8a5a 45%, #D4AF37 100%); }
-        .expand-content { max-height:0; overflow:hidden; transition:max-height .4s ease-out; }
-        .expand-content.expanded { max-height:2000px; }
-        .expand-btn svg, .module-toggle svg, .client-btn svg { transition:transform .3s ease; }
-        .expand-btn.expanded svg, .module-toggle.open svg, .client-btn.open svg { transform:rotate(180deg); }
-        .module-list { display:none; } .module-list.open { display:block; }
-        .client-img { width:36px; height:36px; border-radius:8px; object-fit:cover; background:#F8F9FA; flex-shrink:0; text-shadow:none; }
-        .client-quotes { display:none; } .client-quotes.open { display:block; }
-        .quote { border-left:3px solid; padding-left:12px; font-style:italic; font-size:.9rem; line-height:1.5; text-shadow:none; }
+        
+        .expand-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .expand-content.expanded { max-height: 2000px; }
+        .expand-btn svg { transition: transform 0.3s ease; }
+        .expand-btn.expanded svg { transform: rotate(180deg); }
+        
+        .module-list { display: none; }
+        .module-list.open { display: block; }
+        .module-toggle svg { transition: transform 0.3s ease; }
+        .module-toggle.open svg { transform: rotate(180deg); }
+        
+        .client-btn svg { transition: transform 0.3s ease; }
+        .client-btn.open svg { transform: rotate(180deg); }
+        .client-img { width: 36px; height: 36px; border-radius: 8px; object-fit: cover; background: #F8F9FA; flex-shrink: 0; text-shadow: none; }
+        .client-quotes { display: none; }
+        .client-quotes.open { display: block; }
+        .quote { border-left: 3px solid; padding-left: 12px; font-style: italic; font-size: 0.9rem; line-height: 1.5; text-shadow: none; }
     </style>
 </head>
 <body class="bg-canvasDark text-textMain font-sans antialiased selection:bg-goldAccent selection:text-canvasDark">
 
     <header class="border-b border-surfaceDark/60 py-6 px-6 lg:px-12 sticky top-0 bg-canvasDark/95 backdrop-blur z-50">
         <div class="max-w-[1400px] mx-auto flex justify-between items-center">
-            <a href="#" class="text-lg font-bold tracking-tight text-textMain hover:opacity-90 transition-opacity flex items-center gap-2"><span class="text-goldAccent text-lg">✦</span> DrWarren</a>
+            <a href="#" class="text-lg font-bold tracking-tight text-textMain hover:opacity-90 transition-opacity flex items-center gap-2">
+                <span class="text-goldAccent text-lg">✦</span> DrWarren
+            </a>
             <nav class="flex items-center gap-8">
                 <a href="#about" class="hidden md:inline-block text-xs uppercase tracking-wider text-textMuted hover:text-textMain transition-colors">Why DrWarren</a>
-                <a href="https://calendar.app.google/KZkBjKCEo8qgRmte8" target="_blank" rel="noopener noreferrer" class="text-xs tracking-wider uppercase border border-goldAccent/40 hover:border-goldAccent text-goldAccent px-4 py-2 rounded-sm transition-all">Book Call</a>
+                <a href="https://calendar.app.google/KZkBjKCEo8qgRmte8" target="_blank" rel="noopener noreferrer" class="text-xs tracking-wider uppercase border border-goldAccent/40 hover:border-goldAccent text-goldAccent px-4 py-2 rounded-sm transition-all">
+                    Book Call
+                </a>
             </nav>
         </div>
     </header>
 
     <main class="max-w-[1400px] mx-auto px-6 lg:px-12 py-12">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- LEFT COLUMN -->
             <div class="lg:col-span-7 space-y-16">
+
+                <!-- HERO -->
                 <section class="flex flex-col items-start space-y-8">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-goldAccent/30 bg-goldAccent/5"><span class="text-[10px] text-goldAccent font-semibold tracking-widest uppercase">Certified Partnership</span></div>
-                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-textMain leading-[1.15] tracking-tight">Client Acquisition, <br /><span class="italic text-goldAccent font-semibold">Made Sustainable.</span></h1>
-                    <p class="text-sm md:text-base text-textMuted leading-relaxed max-w-65ch font-sans">You have your business up and running, but you know you can make it more efficient with AI. Get more done. Get more rewards. Get more clients now. We help business owners review real needs and make a serious deep dive into letting AI build and run most functions so you can focus on your strengths and building results from your strengths.</p>
-                    <div class="pt-2"><a href="https://calendar.app.google/KZkBjKCEo8qgRmte8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-goldAccent hover:bg-goldHover text-canvasDark font-bold tracking-wider text-xs rounded-sm transition-colors duration-200 uppercase font-sans">MAP OUT MY NEXT 3 STEPS &rarr;</a></div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-goldAccent/30 bg-goldAccent/5">
+                        <span class="text-[10px] text-goldAccent font-semibold tracking-widest uppercase">Certified Partnership</span>
+                    </div>
+                    
+                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl text-textMain leading-[1.15] tracking-tight">
+                        Your Legacy, <br />
+                        <span class="italic text-goldAccent font-semibold">Scaled by Design.</span>
+                    </h1>
+                    
+                    <p class="text-sm md:text-base text-textMuted leading-relaxed max-w-65ch font-sans">
+                        You are already a master of your craft. Now, you own a high-ticket certification that proves it. We also give you a free starter course so everyone can learn from you, regardless of budget. Your students become your biggest fans, sending referrals and sharing your work while you sleep. You don’t just teach anymore; you lead an empire.
+                    </p>
+                    <div class="pt-2">
+                        <a href="https://calendar.app.google/KZkBjKCEo8qgRmte8" target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center justify-center px-8 py-4 bg-goldAccent hover:bg-goldHover text-canvasDark font-bold tracking-wider text-xs rounded-sm transition-colors duration-200 uppercase font-sans">
+                            MAP OUT MY NEXT 3 STEPS &rarr;
+                        </a>
+                    </div>
                 </section>
 
+                <!-- METHODOLOGY -->
                 <section class="border-t border-surfaceDark/50 pt-16">
                     <div class="text-center space-y-4 mb-12">
                         <span class="text-xs uppercase tracking-widest text-goldAccent font-semibold font-sans">Our Methodology</span>
-                        <h2 class="font-sans text-3xl lg:text-4xl font-bold tracking-tight text-textMain">The Architecture of a Scalable Practice</h2>
+                        <h2 class="font-sans text-3xl lg:text-4xl font-bold tracking-tight text-textMain">Who You Become</h2>
                         <div class="w-12 h-[1px] bg-goldAccent mx-auto mt-4"></div>
                     </div>
+
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans">
-                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300"><div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 01</div><h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">Get Clients Now™ Framework</h3><p class="text-sm text-textMuted leading-relaxed">Stop guessing. Learn the proven relationship-building methods that fill rosters and keeps repeating.</p></div>
-                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300"><div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 02</div><h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">Business Infrastructure & Flow Psychology</h3><p class="text-sm text-textMuted leading-relaxed">Design your business infrastructure. Experience Flow when getting clients as when coaching them.</p></div>
-                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300"><div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 03</div><h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">Breaking the Limiting Identity</h3><p class="text-sm text-textMuted leading-relaxed">Pinpoint and smash the invisible, deep-seated limiting beliefs that keep brilliant coaches playing small.</p></div>
+                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300">
+                            <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 01</div>
+                            <h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">The Definitive Authority</h3>
+                            <p class="text-sm text-textMuted leading-relaxed">You walk away with your unique method turned into a premium asset. People no longer ask if you are the expert—they know it because they hold your certificate in their hands.</p>
+                        </div>
+
+                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300">
+                            <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 02</div>
+                            <h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">The Viral Engine</h3>
+                            <p class="text-sm text-textMuted leading-relaxed">Your classroom fills itself. Happy students share their wins online and refer their peers, creating a steady stream of new clients who trust you before they even meet you.</p>
+                        </div>
+
+                        <div class="bg-surfaceDark p-6 rounded-sm border border-white/5 hover:border-goldAccent/20 transition-all duration-300">
+                            <div class="text-[10px] text-goldAccent font-semibold uppercase tracking-wider mb-2">Step 03</div>
+                            <h3 class="font-sans text-lg font-bold text-textMain leading-snug mb-2">The Inner Circle Leader</h3>
+                            <p class="text-sm text-textMuted leading-relaxed">You sit at the head of a private community of top-tier coaches. You aren’t alone in the struggle; you have partners who help you refine your systems and protect your peace of mind.</p>
+                        </div>
                     </div>
                 </section>
 
+                <!-- WHY DRWARREN -->
                 <section id="about" class="border-t border-surfaceDark/50 pt-16">
                     <div class="space-y-6">
-                        <div class="space-y-3"><span class="text-xs uppercase tracking-widest text-goldAccent font-semibold">The Authority & Origin Anchor</span><h2 class="font-sans text-3xl lg:text-4xl font-bold tracking-tight text-textMain">Why DrWarren?</h2></div>
-                        <p class="text-base text-textMuted leading-relaxed">After surviving a near-fatal car accident that broke both my arms and both legs, I realized life is too short to play small. I committed to aiming higher, and I have spent the last 40 years training those who refuse to settle.</p>
+                        <div class="space-y-3">
+                            <span class="text-xs uppercase tracking-widest text-goldAccent font-semibold">The Authority & Origin Anchor</span>
+                            <h2 class="font-sans text-3xl lg:text-4xl font-bold tracking-tight text-textMain">Why DrWarren?</h2>
+                        </div>
+                        
+                        <p class="text-base text-textMuted leading-relaxed">
+                            After surviving a near-fatal car accident that broke both my arms and both legs, I realized life is too short to play small. I committed to aiming higher, and I have spent the last 40 years training those who refuse to settle.
+                        </p>
+
                         <ul class="space-y-4 py-4">
-                            <li class="flex items-start gap-4"><span class="flex-shrink-0 mt-1"><svg class="w-4 h-4 text-goldAccent" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg></span><span class="text-textMain text-sm">30+ Years running an international training company.</span></li>
-                            <li class="flex items-start gap-4"><span class="flex-shrink-0 mt-1"><svg class="w-4 h-4 text-goldAccent" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg></span><span class="text-textMain text-sm">8 Years explicitly training coaches within certification programs.</span></li>
-                            <li class="flex items-start gap-4"><span class="flex-shrink-0 mt-1"><svg class="w-4 h-4 text-goldAccent" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg></span><span class="text-textMain text-sm">1,600+ Documented client success stories.</span></li>
+                            <li class="flex items-start gap-4">
+                                <span class="flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-goldAccent" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </span>
+                                <span class="text-textMain text-sm">30+ Years running an international training company.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-goldAccent" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </span>
+                                <span class="text-textMain text-sm">8 Years explicitly training coaches within certification programs.</span>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <span class="flex-shrink-0 mt-1">
+                                    <svg class="w-4 h-4 text-goldAccent" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </span>
+                                <span class="text-textMain text-sm">1,600+ Documented client success stories.</span>
+                            </li>
                         </ul>
-                        <div class="border-l border-goldAccent/80 pl-6 py-2 my-6"><p class="font-sans text-lg italic text-textMain font-medium">"Be your best in this short time we have. Go do it now."</p></div>
-                        <div class="pt-6"><a href="https://calendar.app.google/KZkBjKCEo8qgRmte8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-4 bg-goldAccent hover:bg-goldHover text-canvasDark font-bold tracking-wider text-xs rounded-sm transition-colors duration-200 uppercase">SECURE MY STRATEGY CALL &rarr;</a></div>
+
+                        <div class="border-l border-goldAccent/80 pl-6 py-2 my-6">
+                            <p class="font-sans text-lg italic text-textMain font-medium">
+                                "Be your best in this short time we have. Go do it now."
+                            </p>
+                        </div>
+
+                        <div class="pt-6">
+                            <a href="https://calendar.app.google/KZkBjKCEo8qgRmte8" target="_blank" rel="noopener noreferrer" 
+                               class="inline-flex items-center justify-center px-8 py-4 bg-goldAccent hover:bg-goldHover text-canvasDark font-bold tracking-wider text-xs rounded-sm transition-colors duration-200 uppercase">
+                                SECURE MY STRATEGY CALL &rarr;
+                            </a>
+                        </div>
                     </div>
                 </section>
+
             </div>
 
+            <!-- RIGHT COLUMN - OFFERS (loaded from CICT CMS sheet) -->
             <div class="lg:col-span-5">
                 <div class="sticky top-24">
-                    <div class="space-y-5" id="offers-container"><div class="text-center text-textMuted py-8"><div class="animate-pulse">Loading offers...</div></div></div>
+                    <div class="space-y-5" id="offers-container">
+                        <div class="text-center text-textMuted py-8">
+                            <div class="animate-pulse">Loading offers...</div>
+                        </div>
+                    </div>
+
                     <div class="mt-8 p-6 bg-surfaceDark rounded-sm border border-white/5">
                         <p class="text-sm text-textMuted text-center mb-4">Not sure which offer is right for you?</p>
-                        <a href="https://calendar.app.google/KZkBjKCEo8qgRmte8" target="_blank" rel="noopener noreferrer" class="block w-full text-center px-6 py-3 border border-goldAccent/40 hover:border-goldAccent text-goldAccent rounded-sm transition-all text-xs uppercase tracking-wider font-bold">Book a Free Strategy Call</a>
+                        <a href="https://calendar.app.google/KZkBjKCEo8qgRmte8" target="_blank" rel="noopener noreferrer" 
+                           class="block w-full text-center px-6 py-3 border border-goldAccent/40 hover:border-goldAccent text-goldAccent rounded-sm transition-all text-xs uppercase tracking-wider font-bold">
+                            Book a Free Strategy Call
+                        </a>
                     </div>
                 </div>
             </div>
+
         </div>
     </main>
 
@@ -103,15 +225,19 @@
         <div class="max-w-[1200px] mx-auto flex flex-col items-start gap-2 text-xs text-textMuted">
             <span>&copy;2026 DrWarren exmersive.ai, dba Certified Innovation. All rights reserved.</span>
             <div class="flex flex-wrap gap-x-1 gap-y-1">
-                <a href="privacy.html" class="hover:text-textMain transition-colors">Privacy Policy</a><span class="mx-1">|</span>
-                <a href="terms.html" class="hover:text-textMain transition-colors">Terms & Conditions</a><span class="mx-1">|</span>
-                <a href="data-protection.html" class="hover:text-textMain transition-colors">Data Protection</a><span class="mx-1">|</span>
+                <a href="privacy.html" class="hover:text-textMain transition-colors">Privacy Policy</a>
+                <span class="mx-1">|</span>
+                <a href="terms.html" class="hover:text-textMain transition-colors">Terms & Conditions</a>
+                <span class="mx-1">|</span>
+                <a href="data-protection.html" class="hover:text-textMain transition-colors">Data Protection</a>
+                <span class="mx-1">|</span>
                 <a href="earnings-disclaimer.html" class="hover:text-textMain transition-colors">Earnings Disclaimer</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // FIXED: Restored the correct Apps Script URL that handles the 5-column sheet structure
         const CMS_OFFERS_URL = 'https://script.google.com/macros/s/AKfycbxBBfSNhgPGbXKH2CGgUtQXCtYoeF8nfJWIsfsru7yccuUVrDMh4FuVI6rBWiwFNJX-/exec';
         const BOOKING_URL = 'https://calendar.app.google/KZkBjKCEo8qgRmte8';
 
@@ -121,7 +247,7 @@
               bullets:[
                 {text:"Start: A 45-minute KYC fit meeting to see if you qualify and prep work",modules:[]},
                 {text:"Format: Two 4-hour live 1:1 sessions with DrWarren and AI as a real-time thinking partner.",modules:[]},
-                {text:"Core Outcome: A complete, standalone high-ticket course that complements your coaching/practice, free funnels, or scalable group programs.",modules:[
+                {text:"Core Outcome: We build a special class together that helps you charge big money for your coaching. It works perfectly alongside everything else you already do.",modules:[
                     "Module 1 (Big-Ticket Mindset): Break through income ceilings and establish conviction in premium pricing.",
                     "Module 2 (Genius Alignment): Map their unique zone of genius to a high-retention coaching topic they love delivering.",
                     "Module 3 ($10K/mo Client Avatar): Define the premium buyer profile while outlining a free DIY course asset for non-qualifiers.",
@@ -134,21 +260,27 @@
                 {name:"Amy",image:"clients/Amy.jpg",quotes:["Amy made some great strides"]},
                 {name:"Jennifer",image:"clients/Jennifer.jpg",quotes:["Jennifer exploded her lead generation"]}
               ] },
-            { name:"8-Session Intensive",
+            { name:"Your Own High-ticket Certification Program",
               bullets:[
-                {text:"1/2 year coaching",modules:[]},{text:"clarify most important",modules:[]},
-                {text:"create your focused strategy",modules:[]},{text:"develop your accountability schedule",modules:[]},
-                {text:"get it done",modules:[]},{text:"celebrate your success",modules:[]}
+                {text:"Earn extra money by launching your own certification course.",modules:[]},
+                {text:"Get new clients from your new high-ticket course.",modules:[]},
+                {text:"Watch class members share wins online.",modules:[]},
+                {text:"Have your class members bring you new people automatically.",modules:[]},
+                {text:"Finish building your business in just eight weeks.",modules:[]},
+                {text:"Build a great new business that grows while you sleep.",modules:[]}
               ],
               clients:[
-                {name:"Betty",image:"clients/Betty.jpg",quotes:["Betty went through the AI Deep Dive and she got these outcomes"]},
-                {name:"Vincent",image:"clients/Vincent.jpg",quotes:["Vincent made some great strides"]},
-                {name:"Michael D",image:"clients/Michael_D.jpg",quotes:["Michael D exploded her lead generation"]}
+                {name:"Vincent",image:"clients/Vincent.jpg",quotes:["Vincent made some great strides"]}
               ] },
-            { name:"Mastery Bundle",
+            { name:"Premium Mastermind for Operational Excellence",
               bullets:[
-                {text:"1 year intensive",modules:[]},{text:"AI deep dive",modules:[]},
-                {text:"pre-admission to pitch camp and sales camp",modules:[]},{text:"VIP registration for AI retreat",modules:[]}
+                {text:"My Inner Circle: You get VIP access to me in our private mastermind.",modules:[]},
+                {text:"Get Your Custom AI Helper: We build your robot assistant so we can focus on big strategy together.",modules:[]},
+                {text:"We Celebrate Wins: We honor your success with special recognition just for you.",modules:[]},
+                {text:"I Help You Price High: We design fees that match exactly what you're worth.",modules:[]},
+                {text:"No Chasing Money: I handle payment reminders gently so you never have to nag.",modules:[]},
+                {text:"Safe Licensing Rules: We write clear agreements so others can teach my methods safely.",modules:[]},
+                {text:"Marketing Made Easy: I turn our sessions into gold and give you easy referral tools.",modules:[]}
               ],
               clients:[
                 {name:"Michael T",image:"clients/Michael_T.jpg",quotes:["Michael T went through the AI Deep Dive and she got these outcomes"]},
