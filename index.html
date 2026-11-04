@@ -198,11 +198,10 @@
                     if (b.modules && b.modules.length) {
                         return `<li>
                             <button class="module-toggle w-full flex items-start gap-2 text-sm font-semibold text-left" onclick="toggleModules(this)">
-                                <span class="mt-0.5" style="color:${t.dot}">&bull;</span>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mt-0.5 flex-shrink-0"><polyline points="6 9 12 15 18 9"></polyline></svg>
                                 <span class="flex-1">${b.text}</span>
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="mt-1 flex-shrink-0"><polyline points="6 9 12 15 18 9"></polyline></svg>
                             </button>
-                            <div class="module-list"><div class="ml-3 mt-2 mb-1 space-y-2 border-l-2 pl-3" style="border-color:${t.dot}">
+                            <div class="module-list"><div class="ml-7 mt-2 mb-1 space-y-2 border-l-2 pl-3" style="border-color:${t.dot}">
                                 ${b.modules.map(m => `<div class="text-sm leading-relaxed" style="opacity:0.95">${m}</div>`).join('')}
                             </div></div></li>`;
                     }
